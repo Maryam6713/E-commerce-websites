@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Product Cards with Cart Notification & Pagination</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: transparent;
+            color: white;
+            padding: 15px;
+            text-align: right;
+            width: 100%;
+            position: relative;
+        }
+
+        .navbar button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            position: relative;
+        }
+        h1{
+            font-size: 80px;
+        }
+
+        /* Notification Badge */
+        .cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: rgb(141, 138, 138);
+            color: black;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 12px;
+            display: none; /* Initially hidden */
+        }
+
+        /* Product container */
+        .product-container {
+            display: grid;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 80px auto;
+            justify-content: center;
+        }
+
+        /* Product card styles */
+        .product-card {
+            border: none;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f0f0, #ffffff);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-card h2 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .product-card button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card button:hover {
+            background-color: white;
+            border: 1px solid black;
+            color: black;
+        }
+
+        /* Pagination styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .pagination button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .pagination button[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Responsive Grid */
+        @media (min-width: 1200px) {
+            .product-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .product-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            h1{
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .product-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .product-container {
+                grid-template-columns: 1fr;
+
+            }
+            h1{
+                font-size: 35px;
+            }
+           
+        }
+
+        /* Cart drawer styles */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #f4f4f4;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-item h3 {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+        }
+
+        .remove-btn {
+            background-color: orangered;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .close-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body id="main-body">
+
+    <!-- Navbar with Cart Button -->
+    <div class="navbar">
+        <button onclick="toggleCartDrawer()">Open Cart
+            <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+    </div>
+
+    <h1 style="text-align: center; margin-top: 100px; margin-bottom: 20px;">Products</h1>
+    <div class="product-container" id="product-container"></div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+        <button id="prev" onclick="prevPage()" disabled>&larr; Previous</button>
+        <button id="next" onclick="nextPage()">Next &rarr;</button>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="cart-drawer">
+        <button class="close-btn" onclick="toggleCartDrawer()">Close</button>
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+    </div>
+
+    <script>
+        const fakeApiUrl = 'https://fakestoreapi.com/products';
+        const dummyApiUrl = 'https://dummyjson.com/products';
+        const escuelajsApiUrl = 'https://api.escuelajs.co/api/v1/products';
+
+        let cart = [];
+        let cartCount = 0;
+        let currentPage = 1;
+        const itemsPerPage = 8; // Number of items per page
+        let totalPages = 1; // To store total pages count
+        let allProducts = []; // All products fetched
+
+        // Fetch products from three APIs
+        Promise.all([
+            fetch(fakeApiUrl).then(response => response.json()),
+            fetch(dummyApiUrl).then(response => response.json()),
+            fetch(escuelajsApiUrl).then(response => response.json())
+        ]).then(([fakeProducts, dummyProducts, escuelajsProducts]) => {
+            allProducts = [
+                ...fakeProducts,
+                ...dummyProducts.products,
+                ...escuelajsProducts.slice(0, 10)
+            ];
+            totalPages = Math.ceil(allProducts.length / itemsPerPage);
+            displayProducts();
+            updatePagination();
+        }).catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+        // Display products with pagination
+        function displayProducts() {
+            const productContainer = document.getElementById('product-container');
+            productContainer.innerHTML = ''; // Clear current products
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            const productsToShow = allProducts.slice(startIndex, endIndex);
+
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+
+                const imageUrl = product.image || product.thumbnail || product.images[0];
+                const title = product.title || product.name;
+                const price = product.price;
+
+                productCard.innerHTML = `
+                    <img src="${imageUrl}" alt="${title}">
+                    <h2>${title}</h2>
+                    <p>Price: $${price}</p>
+                    <button onclick="addToCart(${product.id}, '${title}', ${price})">Add to Cart</button>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        // Add to cart function
+        function addToCart(productId, title, price) {
+            Swal.fire({
+                title: 'Added to Cart!',
+                text: `${title} has been added to your cart.`,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+
+            // Add the product to the cart
+            cart.push({ id: productId, title, price });
+            updateCartDrawer();
+
+            // Update the cart count badge
+            cartCount++;
+            updateCartBadge();
+        }
+
+        // Update the cart badge
+        function updateCartBadge() {
+            const cartBadge = document.getElementById('cart-badge');
+            cartBadge.textContent = cartCount;
+            cartBadge.style.display = 'inline'; // Show the badge
+        }
+
+        // Update cart drawer
+        function updateCartDrawer() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = ''; // Clear current cart items
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>$${item.price}</p>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+        }
+
+        // Remove item from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1); // Remove the item from cart array
+            updateCartDrawer(); // Update the cart drawer
+        }
+
+        // Pagination navigation
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayProducts();
+                updatePagination();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayProducts();
+                updatePagination();
+            }
+        }
+
+        // Update pagination button states
+        function updatePagination() {
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+        }
+
+        // Toggle cart drawer
+        function toggleCartDrawer() {
+            const cartDrawer = document.getElementById('cart-drawer');
+            cartDrawer.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

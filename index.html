@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online shopping</title>
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<style>
+    /* Sidebar styling */
+
+/* Sidebar styling */
+.sidebar {
+    height: 100%; 
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0; /* Move sidebar to the right */
+    background-color: #111;
+    overflow-x: hidden;
+    transition: width 0.5s ease; /* Animate width change */
+    padding-top: 60px;
+    display: none; /* Initially hidden */
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+/* Overlay styling */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+/* When sidebar is open */
+body.open-sidebar .sidebar {
+    width: 250px; /* Set the width of the sidebar */
+    display: block; /* Display sidebar */
+}
+
+body.open-sidebar .overlay {
+    display: block; /* Show overlay when sidebar is open */
+}
+/* =============contact section ====================== */
+/* Contact Section Styling */
+.contact-section {
+    background-color: unset;
+    padding: 60px 0;
+    color: white;
+    border-radius: 5px;
+}
+
+.contact-section h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+    color: white;
+}
+
+.contact-section p {
+    color: #949191;
+}
+
+.contact-details p, .social-media a {
+    font-size: 16px;
+    color: #858282;
+    margin: 10px 0;
+}
+
+.contact-details p i, .social-media a i {
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.social-media a {
+    display: block;
+    text-decoration: none;
+    color: #858282;
+}
+
+.social-media a:hover {
+    color: #007bff;
+}
+
+.contact-form .form-label {
+    color: #7c7b7b;
+}
+
+.contact-form .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.contact-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-section .col-md-4 {
+        margin-bottom: 30px;
+    }
+}
+
+</style>
+
+<body id="main-body">
+   
+        
+    <body id="main-body">
+        <div class="main container-fluid">
+            <div class="main container-fluid">
+                <nav class="navbar">
+                    <div class="container-fluid d-flex justify-content-between align-items-center">
+                        <div id="logo" class="d-flex align-items-center">
+                            <h2>Products</h2>
+                        </div>
+                        <div class="text-center mx-auto">
+                            <h4 id="usernameDisplay">Hello User</h4>
+                        </div>
+                        <form class="d-flex" role="search">
+                            <!-- Sidebar Toggle Icon -->
+                            <button class="btn" id="sidebarToggleBtn" type="button">
+                                <i class="fas fa-bars fa-2x"></i> <!-- FontAwesome bars icon -->
+                            </button>
+                        </form>
+                    </div>
+                </nav>
+                
+                <!-- Sidebar -->
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" id="closeSidebarBtn">&times;</a>
+                    <a href="#">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="form.html">Register</a>
+                   
+                </div>
+                
+                <!-- Overlay -->
+                <div id="overlay" class="overlay"></div>
+            </div>
+        </div>
+    </body>
+         
+            
+            
+            
+       
+        
+           <!-- -----------navbar end------------- -->
+          
+           <!-- --------- Animated Images End ----------- -->
+
+           <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-12 col-sm-12 mt-5 box-one">
+                       <div class="text-center head-one mb-5"> 
+                          <h1 class="animate offer-head">UP TO<img src="sale.png" alt="" class="img-fluid w-25" id="blink">OFF!</h1>
+                          <p>Discover a world of amazing products right at your fingertips. From the latest fashion trends to must-have electronics, we offer a curated selection of high-quality items at unbeatable prices. Enjoy a seamless shopping experience with fast shipping and hassle-free returns. Shop now and elevate your lifestyle!</p>
+                       </div>
+                        
+                        <div class="text-center animate">
+                            <button type="button" class="btn btn-one " onclick="scrollToRecipes()">Check menu</button>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 col-md-12 col-sm-12 box-two text-center mt-5">
+                        <img src="makeup.png" alt="" class="img-fluid w-100 animate" id="circle">
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        <div class="recipes-box container mt-5" id="recipes-section">
+            <h1 class="text-center animate">Limited Offer</h1>
+            
+              
+         
+            <div class="countdown-container">
+                <h6>Offer will end in</h6>
+                <div class="countdown" id="countdown">
+                    <div class="time-box">
+                        <span id="days" class="number">0 </span>
+                        <span class="label">Days</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours" class="number">0:</span>
+                        <span class="label">Hours</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes" class="number">0:</span>
+                        <span class="label">Minutes</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds" class="number">0</span>
+                        <span class="label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+            
+           
+
+            <div class="products-cards container mt-5">
+                <div class="slider-wrapper">
+                    <div class="side-image left">
+                       
+                    </div>
+                    
+                    <div class="slider-container">
+                        <div id="slider" class="slider d-flex justify-content-between">
+                            <!-- Cards will be dynamically generated here -->
+                        </div>
+                    </div>
+            
+                    <div class="side-image right">
+                      
+                    </div>
+                </div>
+            </div>
+            
+
+
+<div class="second mt-5" >
+    <div><marquee behavior="" direction="" class="mt-3"><h4>"Hurry up and place your order now to enjoy our exclusive offer at half the price! Don't miss out on this amazing deal—limited time only!"</h4> </marquee></div>
+<div class="container d-flex justify-content-between" style=" width: 90% ; height: auto; border-radius: 5px ; box-shadow: #111;">
+    <div class="row">
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12 "><img src="./images/mall.png" alt="" class="img-fluid"></div>
+    <div class="col-12 col-lg-6 col-md-12 col-sm-12 mt-5"><p>"Great news! You can not only shop our products online but also visit any of our partner malls to make your purchase in person. Whether you prefer shopping on our website or picking up your favorite items at a mall near you, we’ve got you covered. But hurry—this special offer is only available for a limited time! Take advantage of this incredible opportunity to enjoy our products at half the price before it's gone. Don’t wait—act now and make the most of this exclusive deal!"</p></div>
+    </div>
+    
+</div>
+</div>
+
+<!-- =======================contact section=================== -->
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section mt-5">
+    <div class="container-fluid">
+        <h2 class="text-center">Contact Us</h2>
+        <p class="text-center">We’d love to hear from you! Whether you have a question about our products, orders, or just want to say hello, feel free to reach out.</p>
+        
+        <div class="row">
+            <!-- Contact Details -->
+            <div class="col-md-4 contact-details">
+                <h4>Our Office</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 1234 Market Street, Shopping City, 56789</p>
+                <p><i class="fas fa-phone-alt"></i> +1 (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> support@onlineshop.com</p>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="col-md-4 social-media">
+                <h4>Follow Us</h4>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><br>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a><br>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><br>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-md-4 contact-form">
+                <h4>Send Us a Message</h4>
+                <form action="/submit-form" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+   <script src="script.js"></script>
+    
+
+    <!-- Rest of your page content -->
+
+    <script>
+
+function startAnimatedCountdown(daysCount) {
+    // Get the current time and add 15 days in milliseconds
+    var endTime = new Date();
+    endTime.setDate(endTime.getDate() + daysCount);
+
+    var intervalId = setInterval(function() {
+        var now = new Date().getTime();
+        var timeLeft = endTime.getTime() - now;
+
+        // Calculate days, hours, minutes, and seconds remaining
+        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        // Update the HTML with the new time values
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+        document.getElementById('seconds').innerText = seconds;
+
+        // When the countdown ends, stop the timer and show the offer ended message
+        if (timeLeft < 0) {
+            clearInterval(intervalId);
+            document.getElementById('countdown').innerHTML = "<h2>The offer has ended!</h2>";
+        }
+    }, 1000);
+}
+
+// Start a 15-day countdown
+startAnimatedCountdown(15);
+
+
+var img = document.getElementById("blink")
+
+setInterval(function(){
+    if (img.style.visibility === 'visible'){
+        img.style.visibility = 'hidden';
+    }else{
+        img.style.visibility = 'visible'
+    }
+},500)
+
+//=============Timer======================//
+const cards = [
+    { title: 'Makeup', image: './images/makeup.avif' },
+    { title: 'Outfit', image: './images/man.jpg' },
+    { title: 'Perfumes', image: './images/perfume.img' },
+    { title: 'Watches', image: './images/watch.avif' },
+    { title: 'Jewelry', image: './images/jewlery.jpg' },
+    { title: 'Shoes', image: './images/shoes.img' }
+];
+
+// Select the slider container
+const slider = document.getElementById('slider');
+
+// Function to create card elements
+function createCard(card) {
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('card');
+    
+    const image = document.createElement('img');
+    image.src = card.image;
+    
+    const content = document.createElement('div');
+    content.classList.add('content');
+    
+    const title = document.createElement('h3');
+    title.innerText = card.title;
+    
+    content.appendChild(title);
+    cardElement.appendChild(image);
+    cardElement.appendChild(content);
+    
+    return cardElement;
+}
+
+// Append cards to the slider
+cards.forEach(card => {
+    slider.appendChild(createCard(card));
+});
+
+// Clone the cards to create a continuous loop
+cards.forEach(card => {
+    slider.appendChild(createCard(card));
+});
+
+// Auto-scroll every 2 seconds with animation
+let currentIndex = 0;
+const slideWidth = document.querySelector('.card').offsetWidth + 20; // 20px margin between cards
+
+function autoScroll() {
+    currentIndex++;
+    if (currentIndex >= cards.length) {
+        slider.style.transition = 'none'; // Disable the transition temporarily
+        slider.style.transform = `translateX(0)`; // Reset position
+        currentIndex = 0;
+        
+        setTimeout(() => {
+            slider.style.transition = 'transform 0.5s ease-in-out'; // Re-enable transition
+        }, 50); // Tiny delay before re-enabling
+    }
+    slider.style.transform = `translateX(${-slideWidth * currentIndex}px)`; // Move to next slide
+}
+
+setInterval(autoScroll, 2000); // Change every 2 seconds
+
+//===============slidbar============================//
+document.addEventListener('DOMContentLoaded', function () {
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const sidebar = document.getElementById('mySidebar');
+    const overlay = document.getElementById('overlay');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+    
+    // Function to open the sidebar
+    sidebarToggleBtn.addEventListener('click', function () {
+        document.body.classList.add('open-sidebar'); // Add class to open sidebar
+    });
+
+    // Function to close the sidebar
+    closeSidebarBtn.addEventListener('click', function () {
+        document.body.classList.remove('open-sidebar'); // Remove class to close sidebar
+    });
+
+    // Close sidebar by clicking on the overlay
+    overlay.addEventListener('click', function () {
+        document.body.classList.remove('open-sidebar'); // Remove class to close sidebar
+    });
+});
+
+
+var images = [
+    'heal.png',
+    'shoes.png',
+    'perfumes.png',
+    'laptop.png',
+    'shirts.png',
+    'makeup.png'
+];
+
+var currentImageIndex = 0;
+
+// Background images array
+var backgroundImages = [
+    'bown.webp', // Ensure this file exists and is not a .crdownload file
+    'green.jpg',
+    './images/p.color.jpg',
+    'black.webp',
+    'skyblue.png',
+    'pink.jpg.crdownload'
+];
+
+var backgroundImageIndex = 0;
+
+// Get the image element
+var imageElement = document.getElementById('circle');
+
+// Add click event listener to the image
+imageElement.addEventListener('click', function() {
+    // Change the main image
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    imageElement.src = images[currentImageIndex];
+
+    // Change the background image
+    backgroundImageIndex = (backgroundImageIndex + 1) % backgroundImages.length;
+    document.body.style.backgroundImage = 'url(' + backgroundImages[backgroundImageIndex] + ')';
+});
+
+// Optional: Check if the images are loading properly
+imageElement.onload = function() {
+    console.log('Image loaded successfully: ' + images[currentImageIndex]);
+};
+
+document.body.onload = function() {
+    console.log('Background image set to: ' + backgroundImages[backgroundImageIndex]);
+};
+
+
+
+   </script>
+ </body>
+</html>
+
+    
+ </body>
+ </html>
+
+

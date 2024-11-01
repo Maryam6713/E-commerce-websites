@@ -1,0 +1,589 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+#main-body{
+    width: 100%;
+    background-image: url(pink.jpg.crdownload);
+    background-position: center center; 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    margin: 0;
+    padding: 0;
+    
+}
+form.d-flex {
+    display: flex;
+    gap: 10px; /* Adjust the gap as needed */
+}
+
+.sidebar, .cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Initially hidden */
+    width: 250px;
+    height: 100%;
+    background-color: #333; /* Darker background for better contrast */
+    color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    padding: 20px; /* Add padding for content */
+}
+
+.sidebar.open, .cart-sidebar.open {
+    right: 0; /* Show sidebar */
+}
+
+.sidebar ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.sidebar li {
+    margin: 15px 0; /* Spacing between items */
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: flex; /* Use flex for icon and text alignment */
+    align-items: center; /* Center items vertically */
+}
+
+.sidebar a i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.close-btn {
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    color: white; /* Icon color */
+    font-size: 1.5rem; /* Adjust icon size */
+    cursor: pointer; /* Pointer on hover */
+    margin-bottom: 20px; /* Space below close button */
+}
+
+  
+
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: white; 
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black; 
+    border-radius: 10px;
+    border: 2px solid; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Scrollbar hover animation */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(83, 78, 78); 
+    transform: scale(1.2); 
+    box-shadow: 0px 0px 10px 2px black; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.animate {
+    /* width: 10% !important; */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 3s ease forwards;
+}
+ @keyframes fadeInUp {
+    to {
+        opacity: 1; 
+          transform: translateY(0); 
+    }
+}  
+
+.logo1{
+    width: 10% !important;
+}
+.logo2{
+    width: 10% !important;
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+.logo2:hover{
+    animation: moveRight 1s forwards, moveBack 1s forwards 1s; /* Animation sequence */
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(300px); /* Navbar ke end tak move karne ke liye */
+    }
+}
+
+@keyframes moveBack {
+    0% {
+        transform: translateX(300px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+ #circle{
+    border-radius: 50%; /* Rounded shape dena */
+   
+    
+} 
+
+.box-one {
+    margin-top: 15%;
+}
+
+.head-one {
+    margin-top: 5% !important;
+}
+
+h1 {
+    font-size: 4rem;
+    color: black;
+    font-weight: bold;
+}
+
+h3 {
+    color: rgb(11, 245, 225);
+}
+
+.para {
+    margin-top: 10%;
+}
+
+p {
+    color: rgb(32, 31, 31);
+}
+
+.btn-one {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.btn-one:hover {
+    background-color: white;
+    color: black;
+}
+
+#recipes{
+    display: flex;
+    flex-wrap: wrap;
+}
+.products-cards{
+    display: flex;
+    justify-content: center;
+    
+}
+/* /===================card slider styling =============// */
+/* Wrapper for the entire slider including side images */
+.slider-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+.slider-container {
+    width: 80%;
+    max-width: 1200px;
+    overflow: hidden;
+    position: relative;
+    border: 5px double black;
+}
+
+.slider {
+    display: flex;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+.card {
+    min-width: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card .content {
+    padding: 15px;
+}
+
+.card .content h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .slider-container {
+        width: 100%;
+    }
+
+    .side-image {
+        display: none; /* Hide side images on small screens */
+    }
+
+    .card {
+        min-width: 250px; /* Adjust card size */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        min-width: 200px; /* Smaller cards for small devices */
+    }
+}
+
+/* ==============image section animation=============== */
+.image-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: -1; 
+}
+
+/* Image Box styling with random positions */
+.image-box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    filter: blur(1px); 
+    opacity: 0; 
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Left to right animation */
+.image-box.animate-left {
+    animation: slideFromLeft 2s forwards ease-out;
+}
+
+.image-box.animate-right {
+    animation: slideFromRight 2s forwards ease-out;
+}
+
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-900px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(900px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+/* ==============image section animation end=============== */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 5px; 
+    background-color: rgba(0, 0, 0, 0.808);
+    color: white;
+}
+
+/* Styles for the container that holds the cards */
+#recipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; 
+    gap: 10px; 
+}
+/* Card image styling */
+.card img {
+    width: 100% !important;
+    height: 300px;
+    object-fit: cover;
+}
+
+#navbar {
+    height: auto;
+}
+
+/* .logo-container, .hover-img-container {
+    
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 0; /* Space ko khatam karne ke liye */
+   
+
+.logo {
+    width: 10%; /* Logo ko container ke hisaab se fit karne ke liye */
+    height: auto; /* Aspect ratio maintain karne ke liye */
+}
+
+.hover-img {
+    width: 50%; /* Hover image ko bhi container ke hisaab se fit karne ke liye */
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+#navbar:hover .hover-img {
+    animation: moveRight 1s forwards, moveBack 1s forwards 1s; /* Animation sequence */
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(300px); /* Navbar ke end tak move karne ke liye */
+    }
+}
+
+@keyframes moveBack {
+    0% {
+        transform: translateX(300px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes rotateIn {
+    0% {
+        transform: translateX(100vw) rotate(360deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+.card-body {
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover .card-body {
+    opacity: 0.9;
+    transform: scale(1.08);
+}
+.my-info{
+    width: 100%;
+    background-color: #ff9500;
+}
+
+
+.modal-backdrop.show {
+    opacity: 0.8;
+    backdrop-filter: blur(10px); 
+}
+
+/* //=================Form styling */
+
+
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .box-one {
+        margin-top: 10%;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    .para {
+        margin-top: 5%;
+    }
+    .btn-one {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+    }
+   #circle{
+    margin-right: 5%;
+   }
+   #logo{
+    width:100%;
+}
+        
+    }
+
+
+@media screen and (max-width: 576px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .para {
+        margin-top: 5%;
+    }
+    .btn-one {
+        margin-top: 5%;
+        font-size: 0.8rem;
+        padding: 6px 16px;
+    }
+    #circle{
+        margin-right: 5%;
+       }
+       #logo{
+        width:100%;
+    }
+}
+
+@media screen and (max-width: 472px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    .para {
+        margin-top: 5%;
+    }
+    .btn-one {
+        margin-top: 5%;
+        font-size: 0.75rem;
+        padding: 5px 15px;
+    }
+    #circle{
+        margin: 0% 10% 0% 0%;
+    }
+    #recipes{
+        margin-right: 30px !important;
+    }
+    #logo{
+        width:100%;
+    }
+}
+
+
+@media screen and (min-width: 992px) {
+    .col-lg-3 {
+        flex-basis: 23%; 
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .col-md-4 {
+        flex-basis: 31%; 
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .col-sm-12 {
+        flex-basis: 100%; 
+    }
+}
+
+
+/* //=============Timer =================== */
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+.countdown-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.number {
+    font-size: 3rem;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.label {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .countdown {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .number {
+        font-size: 2.5rem;
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .number {
+        font-size: 2rem;
+    }
+
+    .label {
+        font-size: 0.8rem;
+    }
+}
