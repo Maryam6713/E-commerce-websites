@@ -182,12 +182,8 @@ body.open-sidebar .overlay {
                 <div id="overlay" class="overlay"></div>
             </div>
         </div>
-    </body>
+    
          
-            
-            
-            
-       
         
            <!-- -----------navbar end------------- -->
           
@@ -374,8 +370,8 @@ setInterval(function(){
     }
 },500)
 
-//=============Timer======================//
-const cards = [
+//=============slider======================//
+var cards = [
     { title: 'Makeup', image: './images/makeup.avif' },
     { title: 'Outfit', image: './images/man.jpg' },
     { title: 'Perfumes', image: './images/perfume.img' },
@@ -385,20 +381,20 @@ const cards = [
 ];
 
 // Select the slider container
-const slider = document.getElementById('slider');
+var slider = document.getElementById('slider');
 
 // Function to create card elements
 function createCard(card) {
-    const cardElement = document.createElement('div');
+    var cardElement = document.createElement('div');
     cardElement.classList.add('card');
     
-    const image = document.createElement('img');
+    var image = document.createElement('img');
     image.src = card.image;
     
-    const content = document.createElement('div');
+    var content = document.createElement('div');
     content.classList.add('content');
     
-    const title = document.createElement('h3');
+    var title = document.createElement('h3');
     title.innerText = card.title;
     
     content.appendChild(title);
@@ -419,8 +415,8 @@ cards.forEach(card => {
 });
 
 // Auto-scroll every 2 seconds with animation
-let currentIndex = 0;
-const slideWidth = document.querySelector('.card').offsetWidth + 20; // 20px margin between cards
+var currentIndex = 0;
+var slideWidth = document.querySelector('.card').offsetWidth + 20; // 20px margin between cards
 
 function autoScroll() {
     currentIndex++;
@@ -440,10 +436,10 @@ setInterval(autoScroll, 2000); // Change every 2 seconds
 
 //===============slidbar============================//
 document.addEventListener('DOMContentLoaded', function () {
-    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
-    const sidebar = document.getElementById('mySidebar');
-    const overlay = document.getElementById('overlay');
-    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+    var sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    var sidebar = document.getElementById('mySidebar');
+    var overlay = document.getElementById('overlay');
+    var closeSidebarBtn = document.getElementById('closeSidebarBtn');
     
     // Function to open the sidebar
     sidebarToggleBtn.addEventListener('click', function () {

@@ -1,15 +1,18 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // On page load, show the stored username if available
+    const savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+        document.getElementById('usernameDisplay').innerText = `Welcome, ${savedUsername}!`;
+    }
 
+    // Form submission event listener
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from refreshing the page
 
-
-document.getElementById('userForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Form ko submit hone se roke
-
-    const username = document.getElementById('username').value; // User ka naam le
-    localStorage.setItem('username', username); // Local storage me username store kare
-    document.getElementById('usernameDisplay').innerText = `Welcome, ${username}!`; // Navbar par naam dikhaye
+        const username = document.getElementById('username').value; // Get the entered username
+        if (username) {
+            localStorage.setItem('username', username); // Store the username in localStorage
+            document.getElementById('usernameDisplay').innerText = `Welcome, ${username}!`; // Update navbar with username
+        }
+    });
 });
-
-
-
-
-

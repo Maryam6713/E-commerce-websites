@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Product Cards with Cart Notification & Pagination</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
         /* Basic reset */
@@ -221,7 +222,12 @@
             font-size: 16px;
             margin: 0;
         }
-
+        i {
+    background: white; /* Background ko remove karne ke liye */
+    color: black; /* Icon ka color set karne ke liye */
+    font-size: 24px; /* Icon ka size set karne ke liye */
+    cursor: pointer; /* Mouse pointer ko change karne ke liye */
+}
         .cart-item p {
             margin: 5px 0;
         }
@@ -237,7 +243,7 @@
         }
 
         .close-btn {
-            background-color: black;
+            background-color: white;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -246,6 +252,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
+        
         }
     </style>
 </head>
@@ -269,22 +276,22 @@
 
     <!-- Cart Drawer -->
     <div id="cart-drawer" class="cart-drawer">
-        <button class="close-btn" onclick="toggleCartDrawer()">Close</button>
+        <button class="close-btn" onclick="toggleCartDrawer()"><i class="fas fa-times"></i></button>
         <h2>Your Cart</h2>
         <div id="cart-items"></div>
     </div>
 
     <script>
-        const fakeApiUrl = 'https://fakestoreapi.com/products';
-        const dummyApiUrl = 'https://dummyjson.com/products';
-        const escuelajsApiUrl = 'https://api.escuelajs.co/api/v1/products';
+        var fakeApiUrl = 'https://fakestoreapi.com/products';
+        var dummyApiUrl = 'https://dummyjson.com/products';
+        var escuelajsApiUrl = 'https://api.escuelajs.co/api/v1/products';
 
-        let cart = [];
-        let cartCount = 0;
-        let currentPage = 1;
-        const itemsPerPage = 8; // Number of items per page
-        let totalPages = 1; // To store total pages count
-        let allProducts = []; // All products fetched
+        var cart = [];
+        var cartCount = 0;
+        var currentPage = 1;
+        var itemsPerPage = 8; // Number of items per page
+        var totalPages = 1; // To store total pages count
+        var allProducts = []; // All products fetched
 
         // Fetch products from three APIs
         Promise.all([
